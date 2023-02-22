@@ -37,12 +37,19 @@ public class Main {
 		System.out.println(sb);
 	}
 
-	private static boolean isInteger(String input) {
-		try {
-			Integer.parseInt(input);
-			return true;
-		} catch (NumberFormatException ex) {
-			return false;
-		}
-	}
+//	private static boolean isInteger(String input) {
+//		try {
+//			Integer.parseInt(input);
+//			return true;
+//		} catch (NumberFormatException ex) {
+//			return false;
+//		}
+//	}
 }
+
+
+/*
+ * 함수를 여러번 실행하면 성능면이나 메모리에 영향을 많이 끼침
+ * 함수로 숫자 검사하는경우 약 800ms / 메모리 104260KB
+ * 한번에 하는 경우 약 500ms / 메모리 57744KB
+ */ 
