@@ -20,9 +20,15 @@ public class Main {
 		
 		for (int i = 0; i < M; i++) {
 			String input = br.readLine();
-			if (isInteger(input)) {
+//			if (isInteger(input)) {
+//				sb.append(map1.get(Integer.parseInt(input)));
+//			} else {
+//				sb.append(map.get(input));
+//			}
+			if(Character.isDigit(input.charAt(0))) {
 				sb.append(map1.get(Integer.parseInt(input)));
-			} else {
+			}
+			else {
 				sb.append(map.get(input));
 			}
 			if(i < M-1) sb.append("\n");
