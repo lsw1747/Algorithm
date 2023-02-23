@@ -5,43 +5,39 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
-		Iterator<Integer> it;
-		Set<Integer> A = new HashSet<Integer>();
-		Set<Integer> B = new HashSet<Integer>();
+		Iterator<Map.Entry<Integer, Integer>> it;
+		HashMap<Integer,Integer> A = new HashMap<>();
+		HashMap<Integer,Integer> B = new HashMap<>();
 		
 		st = new StringTokenizer(br.readLine());
 		int N = Integer.parseInt(st.nextToken());
 		int M = Integer.parseInt(st.nextToken());
 		
+		st = new StringTokenizer(br.readLine());
+		while (st.hasMoreTokens()) {
+			A.put(Integer.parseInt(st.nextToken()),0);
+		}
+
+		st = new StringTokenizer(br.readLine());
+		while (st.hasMoreTokens()) {
+			B.put(Integer.parseInt(st.nextToken()),0);
+		}
 		
-		st = new StringTokenizer(br.readLine());
-		while (st.hasMoreTokens()) {
-			A.add(Integer.parseInt(st.nextToken()));
-		}
-
-		st = new StringTokenizer(br.readLine());
-		while (st.hasMoreTokens()) {
-			B.add(Integer.parseInt(st.nextToken()));
-		}
-
-		// A-B
-		it = B.iterator();
-		while (it.hasNext()) {
-			int elB = it.next();
-			if (A.contains(elB)) {
+		it = B.entrySet().iterator();
+		while(it.hasNext()) {
+			Map.Entry<Integer, Integer> entry = it.next();
+			if(A.containsKey(entry.getKey())) {
 				N--;
 			}
 		}
-
-		// B-A
-		it = A.iterator();
-		while (it.hasNext()) {
-			int elA = it.next();
-			if (B.contains(elA)) {
+		it = A.entrySet().iterator();
+		while(it.hasNext()) {
+			Map.Entry<Integer, Integer> entry = it.next();
+			if(B.containsKey(entry.getKey())) {
 				M--;
 			}
 		}
-
 		System.out.println(N+M);
+		
 	}
 }
