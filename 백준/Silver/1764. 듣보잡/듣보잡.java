@@ -4,6 +4,7 @@ import java.util.*;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		HashMap<String, Integer> map = new HashMap<>();
 
@@ -14,7 +15,6 @@ public class Main {
 			map.put(br.readLine(), 0);
 		}
 		int count = 0;
-		
 		
 		List<String> result = new ArrayList<>();
 		
@@ -30,8 +30,8 @@ public class Main {
 		
 		System.out.println(count);
 		for(String str : result) {
-			if(str != null)
-			System.out.println(str);
+			sb.append(str).append("\n");
 		}
+		System.out.println(sb);
 	}
 }
