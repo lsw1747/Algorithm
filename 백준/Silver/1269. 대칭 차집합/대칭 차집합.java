@@ -4,10 +4,9 @@ import java.util.*;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 		StringTokenizer st;
-		Iterator<Map.Entry<Integer, Integer>> it;
-		HashMap<Integer,Integer> A = new HashMap<>();
-		HashMap<Integer,Integer> B = new HashMap<>();
+		HashMap<Integer,Integer> map = new HashMap<>();
 		
 		st = new StringTokenizer(br.readLine());
 		int N = Integer.parseInt(st.nextToken());
@@ -15,16 +14,18 @@ public class Main {
 		
 		st = new StringTokenizer(br.readLine());
 		while (st.hasMoreTokens()) {
-			A.put(Integer.parseInt(st.nextToken()),0);
+			map.put(Integer.parseInt(st.nextToken()),0);
 		}
 		int count = 0;
 		st = new StringTokenizer(br.readLine());
 		while(st.hasMoreTokens()) {
-			if(A.containsKey(Integer.parseInt(st.nextToken()))) {
+			if(map.containsKey(Integer.parseInt(st.nextToken()))) {
 				count++;
 			}
 		}
 		
-		System.out.println(N+M-(2*count));
+		out.write(N+M-(2*count) + "\n");
+		
+		out.close();
 	}
 }
