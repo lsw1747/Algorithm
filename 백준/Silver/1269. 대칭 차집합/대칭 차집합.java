@@ -6,7 +6,7 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 		StringTokenizer st;
-		HashMap<Integer,Integer> map = new HashMap<>();
+		HashMap<String,Integer> map = new HashMap<>();
 		
 		st = new StringTokenizer(br.readLine());
 		int N = Integer.parseInt(st.nextToken());
@@ -14,12 +14,12 @@ public class Main {
 		
 		st = new StringTokenizer(br.readLine());
 		while (st.hasMoreTokens()) {
-			map.put(Integer.parseInt(st.nextToken()),0);
+			map.put(st.nextToken(),0);
 		}
 		int count = 0;
 		st = new StringTokenizer(br.readLine());
 		while(st.hasMoreTokens()) {
-			if(map.containsKey(Integer.parseInt(st.nextToken()))) {
+			if(map.containsKey(st.nextToken())) {
 				count++;
 			}
 		}
