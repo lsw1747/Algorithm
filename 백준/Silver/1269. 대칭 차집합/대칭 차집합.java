@@ -17,27 +17,14 @@ public class Main {
 		while (st.hasMoreTokens()) {
 			A.put(Integer.parseInt(st.nextToken()),0);
 		}
-
+		int count = 0;
 		st = new StringTokenizer(br.readLine());
-		while (st.hasMoreTokens()) {
-			B.put(Integer.parseInt(st.nextToken()),0);
-		}
-		
-		it = B.entrySet().iterator();
-		while(it.hasNext()) {
-			Map.Entry<Integer, Integer> entry = it.next();
-			if(A.containsKey(entry.getKey())) {
-				N--;
+		while(st.hasMoreTokens()) {
+			if(A.containsKey(Integer.parseInt(st.nextToken()))) {
+				count++;
 			}
 		}
-		it = A.entrySet().iterator();
-		while(it.hasNext()) {
-			Map.Entry<Integer, Integer> entry = it.next();
-			if(B.containsKey(entry.getKey())) {
-				M--;
-			}
-		}
-		System.out.println(N+M);
 		
+		System.out.println(N+M-(2*count));
 	}
 }
