@@ -1,62 +1,57 @@
 import java.io.*;
 import java.util.*;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        int N = Integer.parseInt(br.readLine());
-        int sum = 0, num = 0, size = 0;
-
+        int[] counter = new int[8001];
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        int sum = 0;
+        int num = 0;
+        int maxFrequent = 0;
+        int modeNum = 0;
         List<Integer> list = new ArrayList<>();
+        List<Integer> dupList = new ArrayList<>();
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        int N = Integer.parseInt(br.readLine());
 
         for (int i = 0; i < N; i++) {
             num = Integer.parseInt(br.readLine());
-            sum += num;
             list.add(num);
+            counter[num + 4000]++;
+            if (max < num) max = num;
+            if (min > num) min = num;
+            sum += num;
         }
-
-        size = list.size();
-
-        int middleValue = size / 2;
         Collections.sort(list);
 
-        System.out.println((int) Math.round((((double)sum / size) / 10) * 10)); //평균값 출력
-        System.out.println(list.get(middleValue)); //중간값 출력
-        System.out.println(getMode(list)); //최빈값 출력
-        System.out.println(list.get(size - 1) - list.get(0)); //최댓값 - 최솟값 출력
-    }
-    private static int getMode(List<Integer> list) {
-        //Map에 넣은 뒤, containsKey 해서 있을 시 ++한 값 입력
-        HashMap<Integer, Integer> map = new HashMap<>();
-        int count = 1, maxNum = 0;
-        for (int i = 0; i < list.size(); i++) {
-            if (map.containsKey(list.get(i))) {
-                map.put(list.get(i), ++count);
-            } else {
-                count = 1;
-                map.put(list.get(i), count);
-            }
-        }
-        List<Integer> dupList = new ArrayList<>();
-
-        for (int i : map.keySet()) {
-            if (map.get(i) > maxNum) {
+        for (int i = 0; i < N; i++) {
+            if (maxFrequent == counter[list.get(i) + 4000]) {
+                //중복리스트에 추가
+                if (!dupList.contains(list.get(i))) {
+                    dupList.add(list.get(i));
+                }
+            } else if (maxFrequent < counter[list.get(i) + 4000]) {
+                maxFrequent = counter[list.get(i) + 4000];
+                //리스트 초기화 후 리스트에 새로 추가
                 dupList.clear();
-                maxNum = map.get(i);
-                dupList.add(i);
-            } else if (map.get(i) == maxNum) {
-                dupList.add(i);
+                dupList.add(list.get(i));
             }
         }
-        Collections.sort(dupList);
 
-        if (dupList.size() == 1) {
-            return dupList.get(0);
-        } else {
-            return dupList.get(1);
-        }
+        modeNum = (dupList.size() > 1) ? dupList.get(1) : dupList.get(0);
+
+        sb.append(Math.round(sum / (double) N))
+                .append("\n")
+                .append(list.get(N / 2))
+                .append("\n")
+                .append(modeNum)
+                .append("\n")
+                .append(max - min);
+
+        System.out.println(sb);
 
     }
 }
