@@ -7,10 +7,10 @@ public class Main {
         StringTokenizer st;
         StringBuilder sb = new StringBuilder();
 
-//        List<Integer> queue = new ArrayList<>();
         LinkedList<Integer> queue = new LinkedList<>();
 
-        int num = 0, N = Integer.parseInt(br.readLine()), value = 0;
+
+        int num = 0, N = Integer.parseInt(br.readLine());
 
         while (N-- > 0) {
             st = new StringTokenizer(br.readLine());
@@ -18,12 +18,10 @@ public class Main {
                 case "push":
                     num = Integer.parseInt(st.nextToken());
                     queue.add(num);
-                    value = num;
                     break;
                 case "pop":
                     if (!queue.isEmpty()) {
-                        sb.append(queue.get(0)).append("\n");
-                        queue.remove(0);
+                        sb.append(queue.pollFirst()).append("\n");
                     }
                     else {
                         sb.append("-1").append("\n");
@@ -36,10 +34,10 @@ public class Main {
                     sb.append(queue.isEmpty() ? "1" : "0").append("\n");
                     break;
                 case "front":
-                    sb.append(!queue.isEmpty() ? queue.get(0) : "-1").append("\n");
+                    sb.append(!queue.isEmpty() ? queue.getFirst() : "-1").append("\n");
                     break;
                 case "back":
-                    sb.append(!queue.isEmpty() ? value : "-1").append("\n");
+                    sb.append(!queue.isEmpty() ? queue.getLast() : "-1").append("\n");
                     break;
                 default:
                     break;
